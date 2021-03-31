@@ -1,25 +1,22 @@
-import logo from './logo.svg';
+import { connect } from 'react-redux';
 import './App.css';
+import Pokemon from './components/Pokemon'
+import  getPokemon  from './actions'
 
-function App() {
+
+function App(props) {
+
+  const handleGetPokemon = e => {
+    e.preventDefault();
+    props.getPokemon();
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Pokemon/>
+      <button onClick={handleGetPokemon}>Get Pokemon!</button>
     </div>
   );
 }
 
-export default App;
+export default connect( () => { return {} },{getPokemon} ) (App);
